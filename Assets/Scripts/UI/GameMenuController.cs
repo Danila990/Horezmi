@@ -78,7 +78,7 @@ public class GameMenuController : MonoBehaviour
     {
         DefaultSetupButton(_gameOverMenu, _gameMenu);
         YandexGame.FullscreenShow();
-        YandexGame.CloseFullAdEvent += () => _levelManager.StartGame();
+        _levelManager.StartGame();
     }
 
     private void OpenPauseMenu()

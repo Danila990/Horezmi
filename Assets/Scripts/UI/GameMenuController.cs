@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using YG;
+using Zenject;
 
 public class GameMenuController : MonoBehaviour
 {
@@ -30,6 +31,21 @@ public class GameMenuController : MonoBehaviour
     private SoundManager _soundManager;
     private LevelManager _levelManager;
 
+    [Inject]
+    private void Construct(SoundManager soundManager, LevelManager levelManager)
+    {
+        _soundManager = soundManager;
+        _levelManager = levelManager;
+
+        _levelManager.OnGameOver += OpenGameOverMenu;
+    }
+
+    private void Awake()
+    {
+        SetupButtons();
+        DeactivateMenu();
+    }
+
     private void OnDestroy()
     {
         _levelManager.OnGameOver -= OpenGameOverMenu;
@@ -45,20 +61,13 @@ public class GameMenuController : MonoBehaviour
         _openExitMenuButton.onClick.RemoveListener(OpenExitMenu);
     }
 
-    public void Init(SoundManager soundManager, LevelManager levelManager)
+    private void DeactivateMenu()
     {
-        _soundManager = soundManager;
-        _levelManager = levelManager;
-
         _exitMenu.SetActive(false);
         _gameOverMenu.SetActive(false);
         _pauseMenu.SetActive(false);
         //_optionsMenu.SetActive(false);
         _gameMenu.SetActive(true);
-
-        _levelManager.OnGameOver += OpenGameOverMenu;
-
-        SetupButtons();
     }
 
     private void SetupButtons()

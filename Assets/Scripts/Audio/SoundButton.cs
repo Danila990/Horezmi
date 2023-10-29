@@ -1,21 +1,29 @@
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 public class SoundButton : MonoBehaviour
 {
     [SerializeField] private Sprite _enabledImage;
     [SerializeField] private Sprite _disableImage;
-    [SerializeField] private Button _button;
+
+    private Image _image;
+    private Button _button;
+    private SoundManager _soundManager;
+    private bool _isEnabled = false;
+
+    [Inject]
+    private void Construct(SoundManager soundManager)
+    {
+        _soundManager = soundManager;
+
+        _image = GetComponent<Image>();
+        _button = GetComponent<Button>();
+    }
 
     private void Start()
     {
-        if (SoundManager.instance.IsMute)
-            DisableImage();
-        else
-        {
-            GetComponent<Image>().sprite = _enabledImage;
-            SoundManager.instance.UnmuteSound();
-        }
+        UpdateImageButton();
 
         _button.onClick.AddListener(ClickButton);
     }
@@ -25,23 +33,28 @@ public class SoundButton : MonoBehaviour
         _button.onClick.RemoveListener(ClickButton);
     }
 
+    private void UpdateImageButton()
+    {
+        if (_isEnabled)
+        {
+            _image.sprite = _enabledImage;
+            _soundManager.UnmuteSound();
+        }
+        else
+        {
+            _image.sprite = _disableImage;
+            _soundManager.MuteSound();
+        }
+    }
+
     private void ClickButton()
     {
-        if (SoundManager.instance.IsMute)
-            EnableImage();
-        else DisableImage();
-    }
+        if(_isEnabled)
+            _isEnabled = false;
+        else _isEnabled = true;
 
-    private void EnableImage()
-    {
-        GetComponent<Image>().sprite = _enabledImage;
-        SoundManager.instance.UnmuteSound();
-        SoundManager.instance.PlayClickSound();
-    }
+        _soundManager.PlayClickSound();
 
-    private void DisableImage() 
-    {
-        GetComponent<Image>().sprite = _disableImage;
-        SoundManager.instance.MuteSound();
+        UpdateImageButton();
     }
 }

@@ -10,9 +10,13 @@ public class LevelManager : MonoBehaviour
 
     private bool _isPlayGame = false;
 
+    private void Start()
+    {
+        StartGame();
+    }
+
     public void StartGame()
     {
-        print("start");
         PlayGame();
         OnStartGame?.Invoke();
     }

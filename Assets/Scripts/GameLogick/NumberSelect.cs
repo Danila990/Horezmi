@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class NumberSelect : MonoBehaviour
 {
@@ -9,31 +10,27 @@ public class NumberSelect : MonoBehaviour
     public event Action OnSelectComplete;
     public event Action OnSelectLoss;
 
-    [SerializeField] private float _selectCompleteTIme = 15;
-
     private bool _isPlayGame => _levelManager.IsPlayGame;
 
     private SoundManager _soundManager;
     private NumberGenerator _numberGenerator;
     private LevelManager _levelManager;
-    private Timerlevel _timerlevel;
     private List<Number> _numbersList = new List<Number>(3);
 
-    private void OnDestroy()
-    {
-        _levelManager.OnStartGame -= ResetNumbers;
-    }
-
-    public void Init(LevelManager levelManager,
-        NumberGenerator numberGenerator, SoundManager soundManager,
-        Timerlevel timerlevel)
+    [Inject]
+    private void Construct(LevelManager levelManager,
+        NumberGenerator numberGenerator, SoundManager soundManager)
     {
         _levelManager = levelManager;
         _numberGenerator = numberGenerator;
         _soundManager = soundManager;
-        _timerlevel = timerlevel;
 
         _levelManager.OnStartGame += ResetNumbers;
+    }
+
+    private void OnDestroy()
+    {
+        _levelManager.OnStartGame -= ResetNumbers;
     }
 
     public void NumberUIClick(Number numberUIClick)

@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Zenject;
 
 public class LevelSetting : MonoBehaviour
 {
@@ -13,19 +14,20 @@ public class LevelSetting : MonoBehaviour
     private NumberSelect _numberSelect;
     private int _counterNextUpdate = 0;
 
-    private void OnDestroy()
-    {
-        _levelManager.OnStartGame -= StartGame;
-        _numberSelect.OnSelectComplete -= SelectedComplete;
-    }
-
-    public void Init(LevelManager levelManager, NumberSelect numberSelect)
+    [Inject]
+    private void Construct(LevelManager levelManager, NumberSelect numberSelect)
     {
         _numberSelect = numberSelect;
         _levelManager = levelManager;
 
         _levelManager.OnStartGame += StartGame;
         _numberSelect.OnSelectComplete += SelectedComplete;
+    }
+
+    private void OnDestroy()
+    {
+        _levelManager.OnStartGame -= StartGame;
+        _numberSelect.OnSelectComplete -= SelectedComplete;
     }
 
     public SettingData GetCurrentSetting() => _levelSetting[_currentIndexSetting];

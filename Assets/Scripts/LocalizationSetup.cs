@@ -4,7 +4,7 @@ using YG;
 
 public class LocalizationSetup : MonoBehaviour
 {
-    private void Awake()
+    private void Start()
     {
 #if UNITY_WEBGL
         if (LocalizationSettings.InitializationOperation.IsDone)
@@ -23,6 +23,6 @@ public class LocalizationSetup : MonoBehaviour
 #endif
 
 
-        //LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.GetLocale("en");
+        LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.GetLocale(YandexGame.savesData.language);
     }
 }

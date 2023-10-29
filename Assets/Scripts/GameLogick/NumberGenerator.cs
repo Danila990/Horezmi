@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class NumberGenerator : MonoBehaviour
 {
@@ -12,23 +13,30 @@ public class NumberGenerator : MonoBehaviour
     private LevelManager _levelManager;
     private int _mixRangeNumber;
     private int _maxRangeNumber;
+
+    [Inject]
+    private void Construct(LevelSetting levelSetting, LevelManager levelManager)
+    {
+        _levelSetting = levelSetting;
+        _levelManager = levelManager;
+
+        _levelSetting.OnChangeLevelSetting += CgangeSetting;
+        _levelManager.OnStartGame += StartNumbers;
+    }
+
+    private void Awake()
+    {
+        _defaultTypeLogick = GetComponent<DefaultTypeLogick>();
+
+        CgangeSetting(_levelSetting.GetCurrentSetting());
+    }
+
     private void OnDestroy()
     {
         _levelSetting.OnChangeLevelSetting -= CgangeSetting;
         _levelManager.OnStartGame += StartNumbers;
     }
 
-    public void Init(LevelSetting levelSetting, LevelManager levelManager)
-    {
-        _levelSetting = levelSetting;
-        _levelManager = levelManager;
-        _defaultTypeLogick = GetComponent<DefaultTypeLogick>();
-
-        CgangeSetting(_levelSetting.GetCurrentSetting());
-
-        _levelSetting.OnChangeLevelSetting += CgangeSetting;
-        _levelManager.OnStartGame += StartNumbers;
-    }
 
     public void OverwriteNumbers(List<Number> numbers)
     {
@@ -55,7 +63,7 @@ public class NumberGenerator : MonoBehaviour
         foreach (Number number in numbers)
         {
             int countLessMidleNumbers = CountLessMiddle();
-            if (countLessMidleNumbers <= _numberList.Count - 4 || (countLessMidleNumbers >= 3 && Random.Range(0,100) >= 75))
+            if (countLessMidleNumbers <= _numberList.Count - 6 || (countLessMidleNumbers >= 5 && Random.Range(0,100) >= 75))
                 GenerateNumberData(number);
             else GenerateResultNumberData(number);
 

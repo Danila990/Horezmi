@@ -1,0 +1,313 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5185047587974347464
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5185047587974347469}
+  - component: {fileID: 5185047587974347471}
+  m_Layer: 0
+  m_Name: LevelSetting
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5185047587974347469
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5185047587974347464}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5185047587974347471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5185047587974347464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 247cc35d0d61dd342a53c6e4aaec1792, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _levelSetting:
+  - _timeLimit: 30
+    _selectedComplete: 5
+    _selectedLoss: 10
+    _minValueNumber: 1
+    _maxValueNumber: 6
+    _chanceType:
+    - _typeNumber: 0
+      _chance: 50
+  - _timeLimit: 30
+    _selectedComplete: 5
+    _selectedLoss: 10
+    _minValueNumber: 1
+    _maxValueNumber: 8
+    _chanceType:
+    - _typeNumber: 0
+      _chance: 50
+  - _timeLimit: 30
+    _selectedComplete: 5
+    _selectedLoss: 10
+    _minValueNumber: 1
+    _maxValueNumber: 10
+    _chanceType:
+    - _typeNumber: 0
+      _chance: 50
+    - _typeNumber: 1
+      _chance: 2.5
+  - _timeLimit: 30
+    _selectedComplete: 5
+    _selectedLoss: 10
+    _minValueNumber: 1
+    _maxValueNumber: 12
+    _chanceType:
+    - _typeNumber: 0
+      _chance: 50
+    - _typeNumber: 1
+      _chance: 5
+  - _timeLimit: 35
+    _selectedComplete: 7
+    _selectedLoss: 14
+    _minValueNumber: 1
+    _maxValueNumber: 14
+    _chanceType:
+    - _typeNumber: 0
+      _chance: 50
+    - _typeNumber: 1
+      _chance: 5
+  - _timeLimit: 35
+    _selectedComplete: 7
+    _selectedLoss: 14
+    _minValueNumber: 2
+    _maxValueNumber: 16
+    _chanceType:
+    - _typeNumber: 0
+      _chance: 50
+    - _typeNumber: 1
+      _chance: 7.5
+    - _typeNumber: 2
+      _chance: 1
+  - _timeLimit: 35
+    _selectedComplete: 7
+    _selectedLoss: 14
+    _minValueNumber: 2
+    _maxValueNumber: 18
+    _chanceType:
+    - _typeNumber: 0
+      _chance: 50
+    - _typeNumber: 1
+      _chance: 10
+    - _typeNumber: 2
+      _chance: 2.5
+  - _timeLimit: 35
+    _selectedComplete: 7
+    _selectedLoss: 14
+    _minValueNumber: 2
+    _maxValueNumber: 20
+    _chanceType:
+    - _typeNumber: 0
+      _chance: 50
+    - _typeNumber: 1
+      _chance: 10
+    - _typeNumber: 2
+      _chance: 2.5
+  - _timeLimit: 40
+    _selectedComplete: 15
+    _selectedLoss: 20
+    _minValueNumber: 2
+    _maxValueNumber: 22
+    _chanceType:
+    - _typeNumber: 0
+      _chance: 50
+    - _typeNumber: 1
+      _chance: 15
+    - _typeNumber: 2
+      _chance: 5
+    - _typeNumber: 3
+      _chance: 1
+  - _timeLimit: 40
+    _selectedComplete: 15
+    _selectedLoss: 20
+    _minValueNumber: 2
+    _maxValueNumber: 24
+    _chanceType:
+    - _typeNumber: 0
+      _chance: 50
+    - _typeNumber: 1
+      _chance: 17
+    - _typeNumber: 2
+      _chance: 7
+    - _typeNumber: 3
+      _chance: 2
+  - _timeLimit: 45
+    _selectedComplete: 15
+    _selectedLoss: 20
+    _minValueNumber: 2
+    _maxValueNumber: 26
+    _chanceType:
+    - _typeNumber: 0
+      _chance: 50
+    - _typeNumber: 1
+      _chance: 17
+    - _typeNumber: 2
+      _chance: 7
+    - _typeNumber: 3
+      _chance: 2
+  - _timeLimit: 45
+    _selectedComplete: 15
+    _selectedLoss: 20
+    _minValueNumber: 2
+    _maxValueNumber: 28
+    _chanceType:
+    - _typeNumber: 0
+      _chance: 50
+    - _typeNumber: 1
+      _chance: 25
+    - _typeNumber: 2
+      _chance: 10
+    - _typeNumber: 3
+      _chance: 5
+  - _timeLimit: 50
+    _selectedComplete: 20
+    _selectedLoss: 25
+    _minValueNumber: 2
+    _maxValueNumber: 30
+    _chanceType:
+    - _typeNumber: 0
+      _chance: 50
+    - _typeNumber: 1
+      _chance: 25
+    - _typeNumber: 2
+      _chance: 10
+    - _typeNumber: 3
+      _chance: 5
+  - _timeLimit: 50
+    _selectedComplete: 20
+    _selectedLoss: 25
+    _minValueNumber: 2
+    _maxValueNumber: 32
+    _chanceType:
+    - _typeNumber: 0
+      _chance: 50
+    - _typeNumber: 1
+      _chance: 25
+    - _typeNumber: 2
+      _chance: 10
+    - _typeNumber: 3
+      _chance: 5
+  - _timeLimit: 55
+    _selectedComplete: 25
+    _selectedLoss: 25
+    _minValueNumber: 2
+    _maxValueNumber: 34
+    _chanceType:
+    - _typeNumber: 0
+      _chance: 50
+    - _typeNumber: 1
+      _chance: 30
+    - _typeNumber: 2
+      _chance: 15
+    - _typeNumber: 3
+      _chance: 10
+  - _timeLimit: 55
+    _selectedComplete: 25
+    _selectedLoss: 25
+    _minValueNumber: 2
+    _maxValueNumber: 36
+    _chanceType:
+    - _typeNumber: 0
+      _chance: 50
+    - _typeNumber: 1
+      _chance: 30
+    - _typeNumber: 2
+      _chance: 15
+    - _typeNumber: 3
+      _chance: 10
+  - _timeLimit: 60
+    _selectedComplete: 30
+    _selectedLoss: 30
+    _minValueNumber: 2
+    _maxValueNumber: 38
+    _chanceType:
+    - _typeNumber: 0
+      _chance: 50
+    - _typeNumber: 1
+      _chance: 35
+    - _typeNumber: 2
+      _chance: 20
+    - _typeNumber: 3
+      _chance: 15
+  - _timeLimit: 65
+    _selectedComplete: 30
+    _selectedLoss: 30
+    _minValueNumber: 2
+    _maxValueNumber: 40
+    _chanceType:
+    - _typeNumber: 0
+      _chance: 50
+    - _typeNumber: 1
+      _chance: 35
+    - _typeNumber: 2
+      _chance: 20
+    - _typeNumber: 3
+      _chance: 15
+  - _timeLimit: 70
+    _selectedComplete: 30
+    _selectedLoss: 30
+    _minValueNumber: 2
+    _maxValueNumber: 42
+    _chanceType:
+    - _typeNumber: 0
+      _chance: 50
+    - _typeNumber: 1
+      _chance: 35
+    - _typeNumber: 2
+      _chance: 20
+    - _typeNumber: 3
+      _chance: 15
+  - _timeLimit: 75
+    _selectedComplete: 30
+    _selectedLoss: 30
+    _minValueNumber: 2
+    _maxValueNumber: 44
+    _chanceType:
+    - _typeNumber: 0
+      _chance: 50
+    - _typeNumber: 1
+      _chance: 40
+    - _typeNumber: 2
+      _chance: 25
+    - _typeNumber: 3
+      _chance: 20
+  - _timeLimit: 80
+    _selectedComplete: 30
+    _selectedLoss: 30
+    _minValueNumber: 2
+    _maxValueNumber: 46
+    _chanceType:
+    - _typeNumber: 0
+      _chance: 50
+    - _typeNumber: 1
+      _chance: 45
+    - _typeNumber: 2
+      _chance: 30
+    - _typeNumber: 3
+      _chance: 25
+  _currentIndexSetting: 0
+  _nextUpdateIndex: 5

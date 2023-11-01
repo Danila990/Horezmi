@@ -25,12 +25,12 @@ public class NumberSelect : MonoBehaviour
         _numberGenerator = numberGenerator;
         _soundManager = soundManager;
 
-        _levelManager.OnStartGame += ResetNumbers;
+        _levelManager.OnRestartGame += RestartGame;
     }
 
     private void OnDestroy()
     {
-        _levelManager.OnStartGame -= ResetNumbers;
+        _levelManager.OnRestartGame -= RestartGame;
     }
 
     public void NumberUIClick(Number numberUIClick)
@@ -43,7 +43,7 @@ public class NumberSelect : MonoBehaviour
 
         NumberSumResult();
 
-        ResetNumbers();
+        RestartGame();
     }
 
     private bool CheckDublicate(Number numberUIClick) 
@@ -57,7 +57,7 @@ public class NumberSelect : MonoBehaviour
                     numberUI2.DeactivateLight();
                 }
 
-                ResetNumbers();
+                RestartGame();
                 return true;
             }
 
@@ -85,5 +85,5 @@ public class NumberSelect : MonoBehaviour
         _numberGenerator.OverwriteNumbers(_numbersList);
     }
 
-    private void ResetNumbers() => _numbersList.Clear();
+    private void RestartGame() => _numbersList.Clear();
 }

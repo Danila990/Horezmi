@@ -10,33 +10,20 @@ public class NumberGenerator : MonoBehaviour
     private ChanceType[] _availableOdds;
     private DefaultTypeLogick _defaultTypeLogick;
     private LevelSetting _levelSetting;
-    private LevelManager _levelManager;
     private int _mixRangeNumber;
     private int _maxRangeNumber;
 
     [Inject]
-    private void Construct(LevelSetting levelSetting, LevelManager levelManager)
+    private void Construct(LevelSetting levelSetting)
     {
         _levelSetting = levelSetting;
-        _levelManager = levelManager;
 
-        _levelSetting.OnChangeLevelSetting += CgangeSetting;
-        _levelManager.OnStartGame += StartNumbers;
+        _levelSetting.OnChangeLevelSetting += UpdateSetting;
     }
 
-    private void Awake()
-    {
-        _defaultTypeLogick = GetComponent<DefaultTypeLogick>();
+    private void Awake() => _defaultTypeLogick = GetComponent<DefaultTypeLogick>();
 
-        CgangeSetting(_levelSetting.GetCurrentSetting());
-    }
-
-    private void OnDestroy()
-    {
-        _levelSetting.OnChangeLevelSetting -= CgangeSetting;
-        _levelManager.OnStartGame += StartNumbers;
-    }
-
+    private void OnDestroy() => _levelSetting.OnChangeLevelSetting -= UpdateSetting;
 
     public void OverwriteNumbers(List<Number> numbers)
     {
@@ -45,8 +32,7 @@ public class NumberGenerator : MonoBehaviour
             number.SetValue(0);
             number.SetType(TypeNumber.Default,"");
             number.gameObject.SetActive(false);
-        }
-            
+        } 
 
         GenerateNumbers(numbers);
     }
@@ -153,15 +139,12 @@ public class NumberGenerator : MonoBehaviour
         return count;
     }
 
-    private void CgangeSetting(SettingData settingData)
+    private void UpdateSetting(SettingData settingData)
     {
         _availableOdds = settingData.ChanceType;
-        _mixRangeNumber = settingData.MixRangeNumber;
-        _maxRangeNumber = settingData.MaxRangeNumber;
-    }
+        _mixRangeNumber = settingData.MinValueNumber;
+        _maxRangeNumber = settingData.MaxValueNumber;
 
-    private void StartNumbers()
-    {
         OverwriteNumbers(_numberList);
     }
 }

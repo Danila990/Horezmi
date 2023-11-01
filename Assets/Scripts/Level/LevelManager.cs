@@ -1,24 +1,30 @@
 using System;
 using UnityEngine;
+using Zenject;
 
 public class LevelManager : MonoBehaviour
 {
-    public event Action OnStartGame;
+    public event Action OnRestartGame;
     public event Action OnGameOver;
 
     public bool IsPlayGame => _isPlayGame;
 
     private bool _isPlayGame = false;
+    private LevelSetting _levelSetting;
 
-    private void Start()
+    [Inject]
+    private void Construct(LevelSetting levelSetting)
     {
-        StartGame();
+        _levelSetting = levelSetting;
     }
 
-    public void StartGame()
+    private void Start() => RestartGame();
+
+    public void RestartGame()
     {
         PlayGame();
-        OnStartGame?.Invoke();
+        _levelSetting.RestartSetting();
+        OnRestartGame?.Invoke();
     }
 
     public void GameOver()

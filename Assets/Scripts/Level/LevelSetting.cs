@@ -10,27 +10,27 @@ public class LevelSetting : MonoBehaviour
     [SerializeField] private int _currentIndexSetting = 0;
     [SerializeField] private int _nextUpdateIndex = 10;
 
-    private LevelManager _levelManager;
     private NumberSelect _numberSelect;
     private int _counterNextUpdate = 0;
 
     [Inject]
-    private void Construct(LevelManager levelManager, NumberSelect numberSelect)
+    private void Construct(NumberSelect numberSelect)
     {
         _numberSelect = numberSelect;
-        _levelManager = levelManager;
 
-        _levelManager.OnStartGame += StartGame;
         _numberSelect.OnSelectComplete += SelectedComplete;
     }
 
-    private void OnDestroy()
-    {
-        _levelManager.OnStartGame -= StartGame;
-        _numberSelect.OnSelectComplete -= SelectedComplete;
-    }
+    private void OnDestroy() => _numberSelect.OnSelectComplete -= SelectedComplete;
 
     public SettingData GetCurrentSetting() => _levelSetting[_currentIndexSetting];
+
+    public void RestartSetting()
+    {
+        _currentIndexSetting = 0;
+        _counterNextUpdate = 0;
+        OnChangeLevelSetting?.Invoke(GetCurrentSetting());
+    }
 
     private void UpdateIndexSetting()
     {
@@ -38,12 +38,6 @@ public class LevelSetting : MonoBehaviour
 
         _currentIndexSetting++;
         OnChangeLevelSetting?.Invoke(GetCurrentSetting());
-    }
-
-    private void StartGame()
-    {
-        _currentIndexSetting = 0;
-        _counterNextUpdate = 0;
     }
 
     private void SelectedComplete()

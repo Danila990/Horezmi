@@ -92,9 +92,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e7b52ea2820e954180c731b96747539, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _backgroundNumberUI: {fileID: 4634829227682574393}
   _textValue: {fileID: 8612273743432613297}
-  _numberSelecter: {fileID: 0}
 --- !u!95 &7076960050327997789
 Animator:
   serializedVersion: 5

@@ -28,6 +28,11 @@ public class NumberSelect : MonoBehaviour
         _levelManager.OnRestartGame += RestartGame;
     }
 
+    private void OnDisable()
+    {
+        RestartGame();
+    }
+
     private void OnDestroy()
     {
         _levelManager.OnRestartGame -= RestartGame;
@@ -78,9 +83,15 @@ public class NumberSelect : MonoBehaviour
     private void NumberSumResult()
     {
         if (_numberGenerator.CheckSelectResult(_numbersList))
+        {
+            _soundManager.PlaySelectedComplete();
             OnSelectComplete?.Invoke();
+        }
         else
+        {
+            _soundManager.PlaySelectedLossSound();
             OnSelectLoss?.Invoke();
+        }  
 
         _numberGenerator.OverwriteNumbers(_numbersList);
     }

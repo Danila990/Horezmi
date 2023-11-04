@@ -5,7 +5,6 @@ public class PrefabsInstaller : MonoInstaller
 {
     [SerializeField] private Timerlevel _timerLevelPrefab;
     [SerializeField] private ScoreLevel _scoreLevelPrefab;
-    [SerializeField] private NumberSelect _numberSelectPrefab;
     [SerializeField] private LevelManager _levelManagerPrefab;
     [SerializeField] private LevelSetting _levelSettingPrefab;
 
@@ -18,7 +17,5 @@ public class PrefabsInstaller : MonoInstaller
         Container.Bind<Timerlevel>().FromComponentInNewPrefab(_timerLevelPrefab).AsSingle().NonLazy();
 
         Container.Bind<ScoreLevel>().FromComponentInNewPrefab(_scoreLevelPrefab).AsSingle().NonLazy();
-
-        Container.Bind<NumberSelect>().FromComponentInNewPrefab(_numberSelectPrefab).AsSingle().NonLazy();
     }
 }

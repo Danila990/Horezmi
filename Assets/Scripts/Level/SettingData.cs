@@ -11,8 +11,8 @@ public struct SettingData
     public ChanceType[] ChanceType => _chanceType;
 
 
-    [SerializeField,Range(30, 90)] private float _timeLimit;
-    [SerializeField, Range(5, 30)] private float _selectedComplete;
+    [SerializeField,Range(30, 60)] private float _timeLimit;
+    [SerializeField, Range(5, 15)] private float _selectedComplete;
     [SerializeField,Range(5, 30)] private float _selectedLoss;
     [SerializeField, Range(1, 50)] private int _minValueNumber;
     [SerializeField,Range(1,100)] private int _maxValueNumber;

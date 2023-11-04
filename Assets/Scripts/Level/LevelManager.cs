@@ -6,6 +6,7 @@ public class LevelManager : MonoBehaviour
 {
     public event Action OnRestartGame;
     public event Action OnGameOver;
+    public event Action OnRevivalGame;
 
     public bool IsPlayGame => _isPlayGame;
 
@@ -31,6 +32,12 @@ public class LevelManager : MonoBehaviour
     {
         StopGame();
         OnGameOver?.Invoke();
+    }
+
+    public void RevivalGame()
+    {
+        PlayGame();
+        OnRevivalGame?.Invoke();
     }
 
     public void PlayGame() => _isPlayGame = true;

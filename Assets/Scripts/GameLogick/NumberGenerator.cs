@@ -10,20 +10,27 @@ public class NumberGenerator : MonoBehaviour
     private ChanceType[] _availableOdds;
     private DefaultTypeLogick _defaultTypeLogick;
     private LevelSetting _levelSetting;
+    private LevelManager _levelManager;
     private int _mixRangeNumber;
     private int _maxRangeNumber;
 
     [Inject]
-    private void Construct(LevelSetting levelSetting)
+    private void Construct(LevelSetting levelSetting, LevelManager levelManager)
     {
         _levelSetting = levelSetting;
+        _levelManager = levelManager;
 
         _levelSetting.OnChangeLevelSetting += UpdateSetting;
+        _levelManager.OnRevivalGame += UpdateNumbers;
     }
 
     private void Awake() => _defaultTypeLogick = GetComponent<DefaultTypeLogick>();
 
-    private void OnDestroy() => _levelSetting.OnChangeLevelSetting -= UpdateSetting;
+    private void OnDestroy()
+    {
+        _levelSetting.OnChangeLevelSetting -= UpdateSetting;
+        _levelManager.OnRevivalGame -= UpdateNumbers;
+    }
 
     public void OverwriteNumbers(List<Number> numbers)
     {
@@ -145,6 +152,8 @@ public class NumberGenerator : MonoBehaviour
         _mixRangeNumber = settingData.MinValueNumber;
         _maxRangeNumber = settingData.MaxValueNumber;
 
-        OverwriteNumbers(_numberList);
+        UpdateNumbers();
     }
+
+    private void UpdateNumbers() => OverwriteNumbers(_numberList);
 }

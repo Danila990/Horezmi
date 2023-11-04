@@ -6,7 +6,7 @@ public class Timerlevel : MonoBehaviour
 {
     public event Action<float> OnTimeChange;
 
-    [SerializeField,Range(15,120)] private float _startTime = 30;
+    [SerializeField,Range(25,60)] private float _startTime = 30;
 
     private float _selectedComplete = 15;
     private float _selectedLoss = 15;
@@ -15,7 +15,6 @@ public class Timerlevel : MonoBehaviour
     private LevelManager _levelManager;
     private NumberSelect _numberSelect;
     private LevelSetting _levelSetting;
-
 
     [Inject]
     private void Construct(LevelManager levelManager, LevelSetting levelSetting,
@@ -26,7 +25,8 @@ public class Timerlevel : MonoBehaviour
         _levelSetting = levelSetting;
 
         _levelSetting.OnChangeLevelSetting += UpdateSetting;
-        _levelManager.OnRestartGame += RestartGame;
+        _levelManager.OnRestartGame += RestartTimer;
+        _levelManager.OnRevivalGame += RestartTimer;
         _numberSelect.OnSelectComplete += SelectedComplete;
         _numberSelect.OnSelectLoss += SelectedLoss;
     }
@@ -46,10 +46,13 @@ public class Timerlevel : MonoBehaviour
     private void OnDestroy()
     {
         _levelSetting.OnChangeLevelSetting -= UpdateSetting;
-        _levelManager.OnRestartGame -= RestartGame;
+        _levelManager.OnRestartGame -= RestartTimer;
+        _levelManager.OnRevivalGame += RestartTimer;
         _numberSelect.OnSelectComplete -= SelectedComplete;
         _numberSelect.OnSelectLoss -= SelectedLoss;
     }
+
+    private void ChangeTime() => OnTimeChange?.Invoke(_currentTime);
 
     private void SelectedComplete()
     {
@@ -73,8 +76,6 @@ public class Timerlevel : MonoBehaviour
         ChangeTime();
     }
 
-    private void ChangeTime() => OnTimeChange?.Invoke(_currentTime);
-
     private void UpdateSetting(SettingData settingData)
     {
         _selectedComplete = settingData.SelectedComplete;
@@ -82,7 +83,7 @@ public class Timerlevel : MonoBehaviour
         _timeLimit = settingData.TimeLimit;
     }
 
-    private void RestartGame()
+    private void RestartTimer()
     {
         _currentTime = _startTime;
         ChangeTime();

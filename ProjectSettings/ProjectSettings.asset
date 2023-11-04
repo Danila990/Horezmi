@@ -12,7 +12,7 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: VangardStudio
+  companyName: Vangard Studio
   productName: HOREZMI
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
@@ -526,7 +526,7 @@ PlayerSettings:
     DEVICE_PIXEL_RATIO: 
     ENABLE_CONSOLE: 
     LOCK_ASPECT_RATIO_ON_DESKTOP: true
-    LOCK_ASPECT_RATIO_ON_MOBILE: true
+    LOCK_ASPECT_RATIO_ON_MOBILE: 
     WORKER_FILENAME: 
     YASDK_SHOW_PRELOADER_AD: 
   mobileMTRendering:

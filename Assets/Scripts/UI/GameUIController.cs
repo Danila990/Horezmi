@@ -20,6 +20,7 @@ public class GameUIController : MonoBehaviour
         _levelManager = levelManager;
 
         _levelManager.OnGameOver += OpenGameOverPanel;
+        YandexGame.RewardVideoEvent += RevivalGame;
     }
 
     private void Awake()
@@ -33,6 +34,7 @@ public class GameUIController : MonoBehaviour
     private void OnDestroy()
     {
         _levelManager.OnGameOver -= OpenGameOverPanel;
+        YandexGame.RewardVideoEvent -= RevivalGame;
     }
 
     public void ActivateNeedPanel(UIPanelName name)
@@ -61,6 +63,12 @@ public class GameUIController : MonoBehaviour
         _levelManager.RestartGame();
     }
 
+    public void RevivalButton()
+    {
+        SoundClick();
+        YandexGame.RewVideoShow(1);
+    }
+
     public void LoadHome()
     {
         SoundClick();
@@ -70,6 +78,14 @@ public class GameUIController : MonoBehaviour
     private void OpenGameOverPanel()
     {
         ActivateNeedPanel(UIPanelName.GameOver);
+    }
+
+    private void RevivalGame(int id)
+    {
+        if (id != 1) return;
+
+        _levelManager.RevivalGame();
+        ActivateNeedPanel(UIPanelName.Game);
     }
 
 }

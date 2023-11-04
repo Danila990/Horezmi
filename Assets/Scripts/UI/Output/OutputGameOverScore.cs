@@ -3,7 +3,7 @@ using UnityEngine;
 using YG;
 using Zenject;
 
-public class GameOverOutput : MonoBehaviour
+public class OutputGameOverScore : MonoBehaviour
 {
     public const string NAME_LEADER_BOARD = "TheBestPlayers";
 

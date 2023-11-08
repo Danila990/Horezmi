@@ -20,6 +20,7 @@ public class OutputGameOverScore : MonoBehaviour
 
     private void OnEnable()
     {
+        YandexGame.LoadProgress();
         OutputRecord();
         OutputScore();
     }

@@ -1,2 +1,2 @@
-Build path: D:/IT/Bulds YG
-Build number: 50
+Build path: D:/IT/Horezmi_YG
+Build number: 51
